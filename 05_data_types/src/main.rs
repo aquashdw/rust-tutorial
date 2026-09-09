@@ -44,8 +44,20 @@ fn characters() {
     println!("{c} {z} {heart_eyed_cat}");
 }
 
+fn tuples() {
+    let tup: (i32, f64, u8) = (500, 6.4, 1);
+    let x = tup.0;
+    let y = tup.1;
+    let z = tup.2;
+    println!("{x}, {y}, {z}");
+
+    let (x, y, z) = tup;
+    println!("{x}, {y}, {z}");
+}
+
 fn main() {
     numbers();
     booleans();
     characters();
+    tuples();
 }

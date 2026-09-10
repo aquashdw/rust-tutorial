@@ -1,5 +1,14 @@
 use std::io;
 
+fn main() {
+    numbers();
+    booleans();
+    characters();
+    tuples();
+    arrays();
+}
+
+
 fn numbers() {
     // signed & unsigned int, up to 8 ~ 128 bits
     let signed16: i16 = 42;
@@ -86,12 +95,4 @@ fn index_out_of_bounds() {
         .expect("Input was not a uint");
     let element = a[index];
     println!("The value of the element at index {index} is: {element}");
-}
-
-fn main() {
-    numbers();
-    booleans();
-    characters();
-    tuples();
-    arrays();
 }

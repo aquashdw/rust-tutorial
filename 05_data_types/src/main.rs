@@ -1,3 +1,5 @@
+use std::io;
+
 fn numbers() {
     // signed & unsigned int, up to 8 ~ 128 bits
     let signed16: i16 = 42;
@@ -55,9 +57,41 @@ fn tuples() {
     println!("{x}, {y}, {z}");
 }
 
+fn arrays() {
+    let arr = [1, 2, 3, 4, 5];
+    let a1 = arr[1];
+    println!("{a1}");
+
+    let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+    let monday = days[0];
+    println!("{monday}");
+
+    let arr = [3; 5];
+    let arr_len = arr.len();
+    let three = arr[2];
+    println!("{three} {arr_len}");
+    // index_out_of_bounds();
+}
+
+fn index_out_of_bounds() {
+    let a = [1, 2, 3, 4, 5];
+    println!("Please enter an array index.");
+
+    let mut index = String::new();
+    io::stdin()
+        .read_line(&mut index)
+        .expect("Failed to read line");
+    let index: usize = index.trim()
+        .parse()
+        .expect("Input was not a uint");
+    let element = a[index];
+    println!("The value of the element at index {index} is: {element}");
+}
+
 fn main() {
     numbers();
     booleans();
     characters();
     tuples();
+    arrays();
 }

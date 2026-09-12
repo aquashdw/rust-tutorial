@@ -40,5 +40,7 @@ fn if_else_if(number: i32) {
 fn if_expression(raining: bool) {
     let raining = if raining { "raining" } else { "not raining" };
 
+    // let number = if true { 5 }  else { "6" };  // if / else expressions must have same type
+
     println!("it is {raining}.")
 }

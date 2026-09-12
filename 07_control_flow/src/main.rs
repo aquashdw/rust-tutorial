@@ -7,6 +7,8 @@ fn main() {
     if_else_if(35);
     if_expression(true);
     if_expression(false);
+    loop_bare();
+    loop_result();
     
 }
 
@@ -45,11 +47,25 @@ fn if_expression(raining: bool) {
     println!("it is {raining}.")
 }
 
-fn bare_loop() {
+fn loop_bare() {
     // loops forever
     loop {
         println!("again!");
         // must have break
         break;
     }
+}
+
+fn loop_result() {
+    let mut counter = 0;
+    let result = loop {
+        counter += 1;
+
+        if counter == 10 {
+            // break returns value of `loop`
+            break counter * 2;
+        }
+    };
+
+    println!("The result is {result}");
 }

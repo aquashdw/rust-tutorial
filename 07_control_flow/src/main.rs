@@ -44,3 +44,12 @@ fn if_expression(raining: bool) {
 
     println!("it is {raining}.")
 }
+
+fn bare_loop() {
+    // loops forever
+    loop {
+        println!("again!");
+        // must have break
+        break;
+    }
+}

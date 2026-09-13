@@ -10,6 +10,7 @@ fn main() {
     loop_bare();
     loop_result();
     loop_labels();
+    while_stmt();
 }
 
 fn if_statement(number: i32) {
@@ -23,7 +24,7 @@ fn if_statement(number: i32) {
 fn falsy() {
     // rust doesn't have truthy falsy
     let falsy = 0;
-    // if falsy { println!("this don't run") }  // error
+    // if falsy { println!("this doesn't run") }  // error
     if falsy != 0 {
         println!("falsy is {falsy}")
     }
@@ -90,4 +91,14 @@ fn loop_labels() {
         count += 1;
     }
     println!("end count = {count}")
+}
+
+fn while_stmt() {
+    let mut number = 3;
+    while number != 0 {
+        println!("{number}!");
+        number -= 1;
+    }
+
+    println!("We have LIFTOFF!!!");
 }

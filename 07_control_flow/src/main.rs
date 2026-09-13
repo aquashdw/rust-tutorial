@@ -11,6 +11,8 @@ fn main() {
     loop_result();
     loop_labels();
     while_stmt();
+    for_stmt();
+    for_range();
 }
 
 fn if_statement(number: i32) {
@@ -101,4 +103,25 @@ fn while_stmt() {
     }
 
     println!("We have LIFTOFF!!!");
+}
+
+fn for_stmt() {
+    let arr = [10, 20, 30, 40, 50];
+    let mut sum = 0;
+
+    for elem in arr {
+        sum += elem;
+    }
+    println!("sum of all values: {sum}");
+}
+
+fn for_range() {
+    for num in 0..5 {
+        println!("current num: {num}");
+    }
+
+    for num in (1..4).rev() {
+        println!("{num}!");
+    }
+    println!("LIFTOFF!!!");
 }

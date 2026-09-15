@@ -43,4 +43,29 @@ fn main() {
         s = String::from("ahoy");
         println!("{s}, world!");
     }
+
+    // s comes into scope
+    let s = String::from("hello");
+    // when passed as argument, it moves to the function
+    takes_ownership(s);
+    // meaning it's not valid outside (here)
+    // println!("{s}");  // Value used after being moved [E0382]
+
+    // x comes into scope
+    let x = 5;
+    // i32 implements Copy trait, value is copied to function
+    makes_copy(x);
+    // meaning it's still valid outside (here)
+    println!("{x}~~~");
+
 }
+
+// some_string comes into scope
+fn takes_ownership(some_string: String) {
+    println!("{some_string}!");
+}  // some_string is freed
+
+// some_integer comes into scope
+fn makes_copy(some_integer: i32) {
+    println!("{some_integer}!!!");
+}  // some_integer goes out.....which is it.

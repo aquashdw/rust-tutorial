@@ -172,3 +172,12 @@ fn change_with_mut(some_string: &mut String) {
     some_string.push_str(". world!");
 }
 
+// this function's return type contains a borrowed value, but there is no value for it to be borrowed from
+// fn dangle() -> &String {  // Missing lifetime specifier
+//     let s = String::from("hello");
+//     &s
+// }
+
+fn no_dangle() -> String {
+    String::from("hello")
+}

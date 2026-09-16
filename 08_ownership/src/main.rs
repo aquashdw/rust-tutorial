@@ -44,20 +44,34 @@ fn main() {
         println!("{s}, world!");
     }
 
-    // s comes into scope
-    let s = String::from("hello");
-    // when passed as argument, it moves to the function
-    takes_ownership(s);
-    // meaning it's not valid outside (here)
-    // println!("{s}");  // Value used after being moved [E0382]
+    {
+        // s comes into scope
+        let s = String::from("hello");
+        // when passed as argument, it moves to the function
+        takes_ownership(s);
+        // meaning it's not valid outside (here)
+        // println!("{s}");  // Value used after being moved [E0382]
 
-    // x comes into scope
-    let x = 5;
-    // i32 implements Copy trait, value is copied to function
-    makes_copy(x);
-    // meaning it's still valid outside (here)
-    println!("{x}~~~");
+        // x comes into scope
+        let x = 5;
+        // i32 implements Copy trait, value is copied to function
+        makes_copy(x);
+        // meaning it's still valid outside (here)
+        println!("{x}~~~");
+    }
+    {
+        // return value of gives_ownership is moved to s1
+        let s1 = gives_ownership();
+        println!("{s1}");
 
+        // s2 comes into scope
+        let s2 = String::from("hello");
+
+        // s2 moves into function,
+        // then the return value is moved to s3
+        let s3 = takes_and_gives_back(s2);
+        println!("{s3}");
+    }  // s1, s3 is dropped.
 }
 
 // some_string comes into scope
@@ -69,3 +83,17 @@ fn takes_ownership(some_string: String) {
 fn makes_copy(some_integer: i32) {
     println!("{some_integer}!!!");
 }  // some_integer goes out.....which is it.
+
+
+fn gives_ownership() -> String {
+    // some_string comes into scope
+    let some_string = String::from("yours");
+    // some_string is returned and moves out to calling expression
+    some_string
+}
+
+// a_string comes into scope
+fn takes_and_gives_back(a_string: String) -> String {
+    // a_string is returned and moves out to calling expression
+    a_string
+}

@@ -72,6 +72,52 @@ fn main() {
         let s3 = takes_and_gives_back(s2);
         println!("{s3}");
     }  // s1, s3 is dropped.
+
+    {
+
+        let s1 = String::from("hello");
+        // using tuples can return multiple values,
+        // but the argument is moved to function
+        let (s2, len) = calculate_length_tuple(s1);
+        println!("length of '{s2}': {len}");
+
+        let s1 = String::from("hello");
+        // to avoid moving arguments to function,
+        // we can pass reference
+        let len = calculate_length(&s1);
+        println!("length of '{s1} is {len}'");
+
+        // change function does nothing, check below
+        change_fail(&s1);
+
+        // to let a function modify borrowed value, the variable must be mutable
+        let mut s1 = String::from("hello");
+        change_with_mut(&mut s1);
+        println!("{s1}");
+
+        let r1 = &mut s1;
+        // let r2 = &mut s1;  // cannot borrow `s1` as mutable more than once at a time
+        println!("'{r1}' only");
+
+        let mut s2 = String::from("Hello");
+        // unless its in a new scope
+        {
+            let r2 = &mut s2;
+            r2.push_str(", World!");
+            println!("{r2}");
+        }  // since its freed after close
+        let r1 = &mut s2;
+        println!("'{r1}'");
+
+        // but should not create mutable reference if there is already an immutable one
+        let mut s = String::from("hello");
+        let r1 = &s;
+        let r2 = &s;
+        // let r3 = &mut s;  // cannot borrow `s` as mutable because it is also borrowed as immutable
+        println!("{r1}, {r2}");
+    }
+
+
 }
 
 // some_string comes into scope
@@ -97,3 +143,26 @@ fn takes_and_gives_back(a_string: String) -> String {
     // a_string is returned and moves out to calling expression
     a_string
 }
+
+// returns tuple
+fn calculate_length_tuple(s: String) -> (String, usize) {
+    let length = s.len();
+    (s, length)
+}
+
+// or use borrowed reference
+fn calculate_length(s: &String) -> usize {
+    s.len()
+}  // reference is just reference, no ownership
+
+// but reference doesn't allow modification
+fn change_fail(some_str: &String) {
+    // some_str.push_str(", world!");  // Cannot borrow immutable local variable `some_str` as mutable
+    println!("'{some_str}' is immutable");
+}
+
+// it should be notated its a reference of a mutable
+fn change_with_mut(some_string: &mut String) {
+    some_string.push_str(". world!");
+}
+

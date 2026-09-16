@@ -115,6 +115,12 @@ fn main() {
         let r2 = &s;
         // let r3 = &mut s;  // cannot borrow `s` as mutable because it is also borrowed as immutable
         println!("{r1}, {r2}");
+
+        // immutable reference's scope lasts til when 'it was last used' (the above `println!` in this case)
+        // so here it's okay
+        let r3 = &mut s;
+        r3.push_str(", world!");
+        println!("{r3}");
     }
 
 

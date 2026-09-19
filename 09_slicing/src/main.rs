@@ -50,7 +50,7 @@ fn first_word_noslice(s: &String) -> usize {
 }
 
 // function that returns sliced string
-fn first_word(s: &String) -> &str {
+fn first_word(s: &str) -> &str {
     let bytes = s.as_bytes();
 
     for (i, &item) in bytes.iter().enumerate() {

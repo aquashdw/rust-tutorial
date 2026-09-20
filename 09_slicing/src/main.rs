@@ -29,6 +29,12 @@ fn main() {
 
     // this doesn't
     // s.clear();  // Cannot borrow immutable local variable `s` as mutable
+
+    // here are array slices as well
+    let arr = [1, 2, 3, 4, 5];
+    let slice = &arr[1..3];
+    let slice_item = slice[0];
+    println!("{slice_item}");
 }
 
 

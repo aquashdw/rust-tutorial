@@ -105,9 +105,19 @@ fn rectangles() {
     println!("The area of the rectangle is {} square pixels.", area1(width1, height1));
     // ...but the parameters of the area1 function isn't clear about how they are inter-related
     // (the width and height of *a* rectangle).
+
+    // if we use tuples, we can group the values into one variable
+    let rect1 = (30, 50);  // width, height
+    println!("The area of the rectangle is {} square pixels.", area2(rect1));
+    // which makes sense, but the tuple still don't have any knowledge of
+    // what's the width and what's the height. one must memorize idx 0 is width, idx 1 is height.
 }
 
 fn area1(width: u32, height: u32) -> u32 {
     width * height
+}
+
+fn area2(dimensions: (u32, u32)) -> u32 {
+    dimensions.0 * dimensions.1
 }
 

@@ -5,6 +5,12 @@ struct User {
     sign_in_count: u64,
 }
 
+
+// these are tuple structs
+// useful to give tuple names, when field naming is to verbose
+struct Color(i32, i32, i32);
+struct Point(i32, i32, i32);
+
 fn main() {
     // immutable struct
     let user1 = User {
@@ -51,6 +57,10 @@ fn main() {
     // the struct update syntax moves user1's ownership, meaning we can't use user1 afterwards
     // which also goes for the above, where we manually use user1's fields for user2
     // let user1_email = user1.email;  // Value used after being moved
+
+    // we instantiate tuple structs like this
+    let black = Color(0, 0, 0);
+    let origin = Point(0, 0, 0);
 }
 
 fn build_user(email: String, username: String) -> User {

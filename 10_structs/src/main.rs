@@ -59,7 +59,7 @@ fn main() {
         email: String::from("alex@naver.com"),
         ..user1  // no trailing comma allowed
     };
-    // the struct update syntax moves user1's ownership, meaning we can't use user1 afterwards
+    // the struct update syntax moves user1's ownership, meaning we can't use user1 afterward
     // which also goes for the above, where we manually use user1's fields for user2
     // let user1_email = user1.email;  // Value used after being moved
 
@@ -69,6 +69,8 @@ fn main() {
 
     // unit-like structs instantiate like this
     let subject = AlwaysEqual;
+
+    rectangles();
 }
 
 fn build_user(email: String, username: String) -> User {
@@ -90,3 +92,22 @@ fn build_user(email: String, username: String) -> User {
         sign_in_count: 1
     }
 }
+
+// instead of a new project, I'll create a separate function here
+// for references
+// [an example program using structs](https://doc.rust-lang.org/book/ch05-02-example-structs.html)
+fn rectangles() {
+    // without tuples or structs, we have to represent rectangles like this
+    let width1 = 30;
+    let height1 = 50;
+
+    // and the signature of an area function would be like `area(u32, u32)`
+    println!("The area of the rectangle is {} square pixels.", area1(width1, height1));
+    // ...but the parameters of the area1 function isn't clear about how they are inter-related
+    // (the width and height of *a* rectangle).
+}
+
+fn area1(width: u32, height: u32) -> u32 {
+    width * height
+}
+

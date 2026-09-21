@@ -11,6 +11,11 @@ struct User {
 struct Color(i32, i32, i32);
 struct Point(i32, i32, i32);
 
+
+// structs that don't have any fields are called unit-like structs (like unit types)
+struct AlwaysEqual;
+
+
 fn main() {
     // immutable struct
     let user1 = User {
@@ -61,6 +66,9 @@ fn main() {
     // we instantiate tuple structs like this
     let black = Color(0, 0, 0);
     let origin = Point(0, 0, 0);
+
+    // unit-like structs instantiate like this
+    let subject = AlwaysEqual;
 }
 
 fn build_user(email: String, username: String) -> User {

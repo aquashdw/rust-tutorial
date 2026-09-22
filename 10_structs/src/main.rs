@@ -119,9 +119,23 @@ fn rectangles() {
     };
     println!("The area of the rectangle is {} square pixels.", area(&rect1));
 
+    // :? -> use the `Debug` trait to print `rect1`
+    println!("rect1 is {rect1:?}");
+
+    // :#? -> this prints pretteier
+    println!("rect1 is {rect1:#?}");
+
+    // we can also use dbg macro
+    let scale = 2;
+    let rect1 = Rectangle {
+        width: dbg!(30 * scale),
+        height: 50,
+    };
+    dbg!(&rect1);
 }
 
 // if we use structs, we can label the data.
+#[derive(Debug)]  // derive the `Debug` trait: opt in to make Debug available
 struct Rectangle {
     width: u32,
     height: u32,

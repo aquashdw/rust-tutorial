@@ -111,6 +111,20 @@ fn rectangles() {
     println!("The area of the rectangle is {} square pixels.", area2(rect1));
     // which makes sense, but the tuple still don't have any knowledge of
     // what's the width and what's the height. one must memorize idx 0 is width, idx 1 is height.
+
+    // if we use structs, we can label the data.
+    let rect1 = Rectangle {
+        width: 30,
+        height: 50,
+    };
+    println!("The area of the rectangle is {} square pixels.", area(&rect1));
+
+}
+
+// if we use structs, we can label the data.
+struct Rectangle {
+    width: u32,
+    height: u32,
 }
 
 fn area1(width: u32, height: u32) -> u32 {
@@ -121,3 +135,6 @@ fn area2(dimensions: (u32, u32)) -> u32 {
     dimensions.0 * dimensions.1
 }
 
+fn area(rectangle: &Rectangle) -> u32 {
+    rectangle.width * rectangle.height
+}

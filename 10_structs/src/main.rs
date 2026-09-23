@@ -132,14 +132,29 @@ fn rectangles() {
         height: 50,
     };
     dbg!(&rect1);
+
+    // using rect1's area method
+    let area = rect1.area();
+    println!("{area}");
+
+    let rect1 = Rectangle {
+        width: 30,
+        height: 50,
+    };
+    let rect2 = Rectangle {
+        width: 10,
+        height: 40,
+    };
+    let rect3 = Rectangle {
+        width: 60,
+        height: 45,
+    };
+
+    // with other parameters
+    println!("Can rect1 hold rect2? {}", rect1.can_hold(&rect2));
+    println!("Can rect1 hold rect3? {}", rect1.can_hold(&rect3))
 }
 
-// if we use structs, we can label the data.
-#[derive(Debug)]  // derive the `Debug` trait: opt in to make Debug available
-struct Rectangle {
-    width: u32,
-    height: u32,
-}
 
 fn area1(width: u32, height: u32) -> u32 {
     width * height
@@ -149,6 +164,41 @@ fn area2(dimensions: (u32, u32)) -> u32 {
     dimensions.0 * dimensions.1
 }
 
+// if we use structs, we can label the data.
+#[derive(Debug)]  // derive the `Debug` trait: opt in to make Debug available
+struct Rectangle {
+    width: u32,
+    height: u32,
+}
+
+
+// instead of having a function use a Rectangle,
 fn area(rectangle: &Rectangle) -> u32 {
     rectangle.width * rectangle.height
+}
+
+// we can implement a method that a Rectangle struct can use.
+impl Rectangle {
+
+    // these functions are called associated functions
+    fn area(&self) -> u32 {
+        self.width * self.height
+    }
+
+    // it can have more parameters than self as well.
+    fn can_hold(&self, other: &Rectangle) -> bool {
+        self.width > other.width && self.height > other.height
+    }
+}
+
+
+// there can be multiple impl blocks for a sturct.
+impl Rectangle {
+    fn width_in_cm(&self) -> u32 {
+        self.width * 100
+    }
+
+    fn height_in_cm(&self) -> u32 {
+        self.height * 100
+    }
 }

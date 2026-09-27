@@ -39,7 +39,39 @@ fn main() {
 
     let home = IpAddr::V4(127, 0, 0, 1);
     let loopback = IpAddr::V6(String::from("::1"));
-    // ...this ip address example is in the standard library anyway.
+    // ...this ip address example is in the standard library by the way.
     // let ipv4_addr = IpAddr::V4(Ipv4Addr::new(127, 0, 0, 1));
 }
 
+// this enum has four variants
+enum Message {
+    Quit,
+    Move { x: i32, y: i32 },
+    Write(String),
+    ChangeColor(i32, i32, i32),
+}
+
+// it could be similar to creating 4 different structs,
+// while creating structs means creating different types.
+/*
+struct QuitMessage; // unit struct
+struct MoveMessage {
+    x: i32,
+    y: i32,
+}
+struct WriteMessage(String); // tuple struct
+struct ChangeColorMessage(i32, i32, i32); // tuple struct
+ */
+// in contrast to enum, which all fall under the same `Message` type.
+
+// ...and we can create impl blocks for enums, making methods just like structs.
+impl Message {
+    fn call(&self) {
+        // TODO: message body
+    }
+}
+
+fn message_enum_example() {
+    let message = Message::Write(String::from("hello"));
+    message.call();
+}

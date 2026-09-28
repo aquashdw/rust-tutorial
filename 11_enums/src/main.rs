@@ -1,4 +1,5 @@
 use std::net::Ipv4Addr;
+use std::ptr::null;
 
 enum IpAddrKind {
     V4,
@@ -41,6 +42,9 @@ fn main() {
     let loopback = IpAddr::V6(String::from("::1"));
     // ...this ip address example is in the standard library by the way.
     // let ipv4_addr = IpAddr::V4(Ipv4Addr::new(127, 0, 0, 1));
+
+    message_enum_example();
+    option_enum_example();
 }
 
 // this enum has four variants
@@ -74,4 +78,29 @@ impl Message {
 fn message_enum_example() {
     let message = Message::Write(String::from("hello"));
     message.call();
+}
+
+fn option_enum_example() {
+    // `Option` is an enum in the standard library.
+    // it represents a value could be something or nothing.
+    // it looks like the following:
+    /*
+    enum Option<T> {
+        None,
+        Some(T),
+    }
+     */
+    // ...which is similar to Java Optional<T>.
+
+    // `T` can be deduced with `Some`
+    let some_number = Some(5);
+    let some_char = Some('e');
+    // while it can't be deduced with `None`
+    let absent_number : Option<i32> = None;
+
+    // they have `is_some` and `is_none` methods to check if value exists
+    let result = if some_number.is_some() && absent_number.is_some() {
+        some_number.unwrap() + absent_number.unwrap()
+    } else { -1 };
+    println!("{result}");
 }

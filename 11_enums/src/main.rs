@@ -1,5 +1,7 @@
+use std::future::Pending;
 use std::net::Ipv4Addr;
 use std::ptr::null;
+use crate::UsState::Alaska;
 
 enum IpAddrKind {
     V4,
@@ -45,6 +47,8 @@ fn main() {
 
     message_enum_example();
     option_enum_example();
+    match_flow_example();
+    match_option_example();
 }
 
 // this enum has four variants
@@ -103,4 +107,60 @@ fn option_enum_example() {
         some_number.unwrap() + absent_number.unwrap()
     } else { -1 };
     println!("{result}");
+}
+
+#[derive(Debug)]
+enum UsState {
+    Alabama,
+    Alaska,
+    // omitted
+}
+
+enum Coin {
+    Penny,
+    Nickel,
+    Dime,
+    Quarter(UsState),
+}
+
+fn value_in_cents(coin: Coin) -> u8 {
+    // match (expression) {}
+    // execute or evaluate the code that matches the expression
+    match coin {
+        // this is called a match arm
+        Coin::Penny => {  // `=>` separates the pattern and code.
+            println!("Lucky Penny!");
+            1
+        }  // when we use curly brackets commas are optional
+        // normally each arm is separated with commas
+        Coin::Nickel => 5,
+        Coin::Dime => 10,
+        // when using enums with values, we can use variables to bind the values
+        Coin::Quarter(state) => {
+            println!("State quarter from {state:?}");
+            25
+        }
+    }
+}
+
+fn match_flow_example() {
+    value_in_cents(Coin::Penny);
+    value_in_cents(Coin::Quarter(Alaska));
+    let dime_value = value_in_cents(Coin::Dime);
+    println!("{dime_value}");
+}
+
+
+fn plus_one(x: Option<i32>) -> Option<i32> {
+    match x {
+        None => None,
+        Some(i) => Some(i + 1),
+    }
+}
+
+fn match_option_example() {
+    let five = Some(5);
+    let six = plus_one(five);
+    let none = plus_one(None);
+
 }

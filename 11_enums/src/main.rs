@@ -1,4 +1,3 @@
-use std::future::Pending;
 use std::net::Ipv4Addr;
 use std::ptr::null;
 use crate::UsState::Alaska;
@@ -49,6 +48,7 @@ fn main() {
     option_enum_example();
     match_flow_example();
     match_option_example();
+    catch_all_example();
 }
 
 // this enum has four variants
@@ -162,5 +162,32 @@ fn match_option_example() {
     let five = Some(5);
     let six = plus_one(five);
     let none = plus_one(None);
+}
 
+
+fn catch_all_example() {
+    let dice_roll = 9;
+    // matches are exhaustive; all possible cases must be met
+    match dice_roll {
+        3 => add_fancy_hat(),
+        7 => rm_fancy_hat(),
+        // for all other possible values, we can bind a variable
+        other => move_player(other),
+        // if we don't need the value, we use underscore
+        _ => println!("reroll"),
+        // if we don't want anything to happen at all, we use empty tuples
+        _ => ()
+    }
+}
+
+fn add_fancy_hat() {
+    println!("fancy hat added");
+}
+
+fn rm_fancy_hat() {
+    println!("fancy hat removed");
+}
+
+fn move_player(num_spaces: u8) {
+    println!("player moves: {num_spaces} spaces");
 }

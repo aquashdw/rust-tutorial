@@ -1,6 +1,6 @@
 use std::net::Ipv4Addr;
 use std::ptr::null;
-use crate::UsState::Alaska;
+use crate::UsState::{Alabama, Alaska};
 
 enum IpAddrKind {
     V4,
@@ -49,6 +49,7 @@ fn main() {
     match_flow_example();
     match_option_example();
     catch_all_example();
+    if_let_else_example();
 }
 
 // this enum has four variants
@@ -190,4 +191,42 @@ fn rm_fancy_hat() {
 
 fn move_player(num_spaces: u8) {
     println!("player moves: {num_spaces} spaces");
+}
+
+fn if_let_else_example() {
+    // say we want to execute code only when a max value is configured
+    let config_max = Some(3u8);
+    match config_max {
+        Some(max) => println!("Configured max: {max}"),
+        // because `match`s are exhaustive, this arm is necessary, and kind of redundant
+        _ => (),
+    }
+
+    // we can use `if let` for this case
+    if let Some(max) = config_max {  // we can assign `config_max`'s value to `max`
+        println!("Configured max: {max}")
+    }
+    // so `if let`s are like syntax sugar for `match` with one arm.
+
+
+    // we can add a `else` to the whole occasion
+    let mut count = 0;
+
+    // for situations that doesn't require the value,
+    // let coin = Coin::Quarter(Alabama);
+    let coin = Coin::Dime;
+    match coin {
+        Coin::Quarter(state) => println!("State quarter from {state:?}"),
+        _ => count += 1,
+    }
+
+    // we can use the else block
+    let coin = Coin::Quarter(Alaska);
+    if let Coin::Quarter(state ) = coin {
+        println!("State quarter from {state:?}")
+    } else {
+        count += 1;
+    }
+
+    println!("None quarter count: {count}");
 }

@@ -28,6 +28,23 @@ mod front_of_house {
 
 pub fn eat_at_restaurant() {
     // public functions can be called absolute or relative
+
+    // crate is the `lib.rs` or `main.rs` in `src/`
+    // which acts as the root for abs path
     crate::front_of_house::hosting::add_to_waitlist();
+    // module `front_of_house` is the same level as this function,
+    // so it's a sibling which don't have to be public
     front_of_house::hosting::add_to_waitlist();
+}
+
+fn deliver_order() {}
+
+mod back_of_house {
+    fn fix_incorrect_order() {
+        cook_order();
+        // using super, we can call relative parent path
+        super::deliver_order();
+    }
+
+    fn cook_order () {}
 }

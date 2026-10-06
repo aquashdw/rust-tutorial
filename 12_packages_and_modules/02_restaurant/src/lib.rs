@@ -64,6 +64,12 @@ mod back_of_house {
             }
         }
     }
+
+    // when enums are public, all it's variants are public
+    pub enum Appetizer {
+        Soup,
+        Salad,
+    }
 }
 
 pub fn eat_at_brunch_cafe() {
@@ -76,4 +82,7 @@ pub fn eat_at_brunch_cafe() {
     // // error: Field `seasonal_fruit` in struct `back_of_house::Breakfast` is private
     // println!("seasonal fruit served: {}", meal.seasonal_fruit);
     // meal.seasonal_fruit = String::from("blueberries");
+
+    let order1 = back_of_house::Appetizer::Soup;
+    let order2 = back_of_house::Appetizer::Salad;
 }

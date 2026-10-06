@@ -47,4 +47,33 @@ mod back_of_house {
     }
 
     fn cook_order () {}
+
+    // we can use `pub` in front of structs as well
+    pub struct Breakfast {
+        // the struct's fields must be designated public separately
+        pub toast: String,
+        seasonal_fruit: String,
+    }
+
+    impl Breakfast {
+        // methods must be designated public as well
+        pub fn summer(toast: &str) -> Breakfast {
+            Breakfast {
+                toast: String::from(toast),
+                seasonal_fruit: String::from("peaches"),
+            }
+        }
+    }
+}
+
+pub fn eat_at_brunch_cafe() {
+    let mut meal = back_of_house::Breakfast::summer("Rye");
+    // we can use struct's public fields
+    meal.toast = String::from("Wheat");
+    println!("I'd like {} toast please", meal.toast);
+
+    // we can't use struct's private fields
+    // // error: Field `seasonal_fruit` in struct `back_of_house::Breakfast` is private
+    // println!("seasonal fruit served: {}", meal.seasonal_fruit);
+    // meal.seasonal_fruit = String::from("blueberries");
 }

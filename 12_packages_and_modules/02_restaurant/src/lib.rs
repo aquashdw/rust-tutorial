@@ -86,3 +86,40 @@ pub fn eat_at_brunch_cafe() {
     let order1 = back_of_house::Appetizer::Soup;
     let order2 = back_of_house::Appetizer::Salad;
 }
+
+// using `use` keyword can create a shortcut for modules
+use crate::front_of_house::hosting;
+
+pub fn eat_at_diner() {
+    hosting::add_to_waitlist();
+}
+
+mod customer {
+    // the `use` is limited to the scope it was occurred
+    // so the inner module have to add `use` separately
+    use crate::front_of_house::hosting;
+
+    pub fn eat_at_restaurant() {
+        hosting::add_to_waitlist();
+    }
+}
+
+
+// while for functions, it's idiomatic to specify the parent module when using `use`
+// to reveal the function is being brought from somewhere else.
+// below works, but not recommended
+// use crate::front_of_house::hosting::add_to_waitlist;
+
+
+// whereas structs, enums, and other items, people use `use` to specify the full path,
+// unless we use two different things with the same name,
+// such as `std::fm::Result` and `std::io::Result`
+// it's just a custom people have grown to.
+use std::collections::HashMap;
+
+fn use_for_other_objects() {
+    let mut map = HashMap::new();
+    map.insert(1, 2);
+}
+
+

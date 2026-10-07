@@ -123,3 +123,6 @@ fn use_for_other_objects() {
 }
 
 
+// or we can use the `as` keyword to introduce alias.
+use std::fmt::Result as FmtResult;
+use std::io::Result as IoResult;

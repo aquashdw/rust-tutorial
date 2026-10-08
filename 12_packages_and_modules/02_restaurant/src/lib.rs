@@ -88,7 +88,7 @@ pub fn eat_at_brunch_cafe() {
 }
 
 // using `use` keyword can create a shortcut for modules
-use crate::front_of_house::hosting;
+// use crate::front_of_house::hosting;
 
 pub fn eat_at_diner() {
     hosting::add_to_waitlist();
@@ -126,3 +126,7 @@ fn use_for_other_objects() {
 // or we can use the `as` keyword to introduce alias.
 use std::fmt::Result as FmtResult;
 use std::io::Result as IoResult;
+
+// we can add `pub` in front of `use` to re-export
+pub use crate::front_of_house::hosting;
+

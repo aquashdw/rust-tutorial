@@ -3,4 +3,6 @@ name = "restaurant"
 version = "0.1.0"
 edition = "2024"
 
+# external dependencies are downloaded from cargo.io
 [dependencies]
+rand = "0.10.3"

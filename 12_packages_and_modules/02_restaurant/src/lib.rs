@@ -1,4 +1,5 @@
-mod front_of_house {
+// the contents of this module is moved to `front_of_house.rs`
+/*mod front_of_house {
     // with the `pub` keyword the makes the module public
     pub mod hosting {
         // `pub` keyword makes functions public as well
@@ -24,7 +25,10 @@ mod front_of_house {
 
          fn take_payment() {}
      }
-}
+}*/
+mod front_of_house;
+// this `use` brings `front_of_house::hosting` to this file's `front_of_house`
+pub use crate::front_of_house::hosting;
 
 pub fn eat_at_restaurant() {
     // public functions can be called absolute or relative
@@ -127,6 +131,6 @@ fn use_for_other_objects() {
 use std::fmt::Result as FmtResult;
 use std::io::Result as IoResult;
 
-// we can add `pub` in front of `use` to re-export
+/*// we can add `pub` in front of `use` to re-export
 pub use crate::front_of_house::hosting;
-
+*/

@@ -1,5 +1,6 @@
 fn main() {
     vectors();
+    strings();
 }
 
 fn vectors() {
@@ -53,4 +54,31 @@ fn vectors() {
     // unless it is borrowed again
     let first = &v[0];
     println!("The first element is {first}");
+}
+
+fn strings() {
+    // creating an empty `String`
+    let mut s = String::new();
+
+    // string literal to `String`
+    let data = "initial contents";
+    let s = data.to_string();
+    // in one-line
+    let s = "initial contents".to_string();
+    // with `::from`
+    let s = String::from("initial contents");
+    let s = String::from(data);
+
+    // hello in various languages; strings are utf-8 encoded
+    let hello = String::from("السلام عليكم");
+    let hello = String::from("Dobrý den");
+    let hello = String::from("Hello");
+    let hello = String::from("שלום");
+    let hello = String::from("नमस्ते");
+    let hello = String::from("こんにちは");
+    let hello = String::from("안녕하세요");
+    let hello = String::from("你好");
+    let hello = String::from("Olá");
+    let hello = String::from("Здравствуйте");
+    let hello = String::from("Hola");
 }

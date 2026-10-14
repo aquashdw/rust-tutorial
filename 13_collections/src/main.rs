@@ -1,3 +1,5 @@
+use std::ops::Add;
+
 fn main() {
     vectors();
     strings();
@@ -97,6 +99,20 @@ fn strings() {
     // characters can be appended with `push`
     let mut s = String::from("lo");
     s.push('l');
-    println!("{s}")
+    println!("{s}");
 
+    // string can use `+`
+    let s1 = String::from("Hello, ");
+    let s2 = String::from("World!");
+    let s3 = s1 + &s2;
+    println!("{s3}");
+    // but this makes `s1` invalid because of the `add` method
+    // println!("{s1}");  // Value used after being moved
+
+    // for multiple strings, use `format!`
+    let s1 = String::from("tic");
+    let s2 = String::from("tac");
+    let s3 = String::from("toe");
+    let s = format!("{s1}-{s2}-{s3}");
+    println!("{s}");
 }

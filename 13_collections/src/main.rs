@@ -81,4 +81,22 @@ fn strings() {
     let hello = String::from("Olá");
     let hello = String::from("Здравствуйте");
     let hello = String::from("Hola");
+
+    // mutable string can be updated
+    let mut s = String::from("foo");
+    s.push_str("bar");
+    println!("{s}");
+
+    // '&str' can be appended
+    let mut s1 = String::from("foo");
+    let s2 = "bar";
+    s1.push_str(s2);
+    // `s2`'s ownership is not taken
+    println!("s1: {s1}, s2: {s2}");
+
+    // characters can be appended with `push`
+    let mut s = String::from("lo");
+    s.push('l');
+    println!("{s}")
+
 }

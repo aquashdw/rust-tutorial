@@ -115,4 +115,16 @@ fn strings() {
     let s3 = String::from("toe");
     let s = format!("{s1}-{s2}-{s3}");
     println!("{s}");
+
+    let s1 = String::from("hi");
+    // strings cannot be accessed with indexing
+    // let h = s1[0];  // the type `str` cannot be indexed by `{integer}`
+
+    // strings in rust are actually `Vec<u8>` wrapper, one byte per index
+    // rust uses utf-8 to encode strings, making the following string `hello`'s length 4
+    let hello = String::from("Hola");
+    // whereas the following string is made of Cyrillic, making them require 2 bytes per letter
+    // making `hello`'s length 24 (twice the actual character count)
+    let hello = String::from("Здравствуйте");
+    // and trying to access a character with indexing will result in unpredictable results
 }

@@ -127,4 +127,27 @@ fn strings() {
     // making `hello`'s length 24 (twice the actual character count)
     let hello = String::from("Здравствуйте");
     // and trying to access a character with indexing will result in unpredictable results
+
+
+    // we can slice strings
+    let hello = "Здравствуйте";
+    let s = &hello[0..4];
+    println!("sliced 0..4: {s}");
+
+    // but must be cautious because some characters are 1byte and some are 2bytes
+    // and below results in a runtime error
+    /*
+    let s = &hello[0..1];  // end byte index 1 is not a char boundary; it is inside 'З' (bytes 0..2 of string)
+    println!("sliced 0..1: {s}");
+    */
+
+    let hello = "hello";
+    let s = &hello[0..1];
+    println!("sliced 0..1: {s}");
+
+    let hello = "hello안녕";
+    let len = hello.bytes().len();
+    println!("{len}");
+    let s = &hello[4..8];
+    println!("sliced 4..6: {s}");
 }

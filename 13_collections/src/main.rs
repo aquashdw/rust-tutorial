@@ -150,4 +150,17 @@ fn strings() {
     println!("{len}");
     let s = &hello[4..8];
     println!("sliced 4..6: {s}");
+
+    // we can iterate with `.chars()`
+    for c in "Здравствуйте".chars() {
+        print!("{c}");
+    }
+    println!();
+
+    // or `.bytes()`
+    for c in "Здравствуйте".bytes() {
+        print!("{c} ")
+    }
+    // when using `.bytes()`, valid Unicode may be made up of more than 1 byte.
+    println!();
 }

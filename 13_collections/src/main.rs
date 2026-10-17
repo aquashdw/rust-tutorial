@@ -1,8 +1,9 @@
-use std::ops::Add;
+use std::collections::HashMap;
 
 fn main() {
     vectors();
     strings();
+    hashmaps();
 }
 
 fn vectors() {
@@ -163,4 +164,18 @@ fn strings() {
     }
     // when using `.bytes()`, valid Unicode may be made up of more than 1 byte.
     println!();
+}
+
+fn hashmaps() {
+    let mut scores = HashMap::new();
+    scores.insert(String::from("Blue"), 10);
+    scores.insert(String::from("Yellow"), 50);
+
+    let team_name = String::from("Blue");
+    let score = scores.get(&team_name).copied().unwrap_or(0);
+    println!("{team_name} scored: {score}");
+
+    for (key, value) in &scores {
+        println!("{key}: {value}");
+    }
 }

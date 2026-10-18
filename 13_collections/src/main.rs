@@ -186,4 +186,14 @@ fn hashmaps() {
     // owned values like `String`'s ownership is moved when used for `HashMap`
     map.insert(field_name, field_value);
     // println!("{field_name}");   // Value used after being moved
+
+    // it's a hash map...so it acts like a hash map
+    // meaning only one value is associated with one key
+    let mut scores = HashMap::new();
+    scores.insert(String::from("Blue"), 10);
+    println!("{scores:?}");
+    // if we use the same key values are overwritten
+    scores.insert(String::from("Blue"), 25);
+    println!("{scores:?}");
+
 }

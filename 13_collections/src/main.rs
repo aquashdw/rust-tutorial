@@ -178,4 +178,12 @@ fn hashmaps() {
     for (key, value) in &scores {
         println!("{key}: {value}");
     }
+
+    let mut map = HashMap::new();
+    let field_name = String::from("Favorite color");
+    let field_value = String::from("Blue");
+
+    // owned values like `String`'s ownership is moved when used for `HashMap`
+    map.insert(field_name, field_value);
+    // println!("{field_name}");   // Value used after being moved
 }

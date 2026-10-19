@@ -196,4 +196,10 @@ fn hashmaps() {
     scores.insert(String::from("Blue"), 25);
     println!("{scores:?}");
 
+    // we can use `.entry(key)` to retrieve an `Entry`
+    // like `Option`, it represents a value that might / might not exist,
+    // and `.or_insert(value)` can add the value when it doesn't.
+    scores.entry(String::from("Yellow")).or_insert(50);
+    scores.entry(String::from("Blue")).or_insert(50);
+    println!("{scores:?}");
 }

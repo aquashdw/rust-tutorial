@@ -1,6 +1,13 @@
+use std::fs::File;
 use std::io;
 
 fn main() {
+    // panicking();
+    using_result();
+}
+
+
+fn panicking() {
     // `panic!` is for unrecoverable errors
     // panic!("burn the house down");
 
@@ -22,4 +29,16 @@ fn main() {
     let v = vec![1, 2, 3];
     // this may panic if index is out of bounds
     v[index];
+}
+
+fn using_result() {
+    // `Result<T>` is an enum
+    let greeting_file_result = File::open("hello.txt");
+    // each value represents whether the function succeeded or failed
+    let greeting_file = match greeting_file_result {
+        // if the result is `Ok`, the function succeeded, and we can use the value inside
+        Ok(file) => { file }
+        // if the result is `Error`, the error value is available
+        Err(error) => panic!("Problem opening the file: {error:?}"),
+    };
 }

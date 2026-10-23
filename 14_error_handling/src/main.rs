@@ -1,5 +1,6 @@
 use std::fs::File;
 use std::io;
+use std::io::ErrorKind;
 
 fn main() {
     // panicking();
@@ -37,8 +38,17 @@ fn using_result() {
     // each value represents whether the function succeeded or failed
     let greeting_file = match greeting_file_result {
         // if the result is `Ok`, the function succeeded, and we can use the value inside
-        Ok(file) => { file }
+        Ok(file) => file,
         // if the result is `Error`, the error value is available
-        Err(error) => panic!("Problem opening the file: {error:?}"),
+        // Err(error) => panic!("Problem opening the file: {error:?}"),
+
+        // with `error.kind()`, we can decide action based on error
+        Err(error) => match error.kind() {
+            ErrorKind::NotFound => match File::create("hello.txt") {
+                Ok(fc) => fc,
+                Err(error) => panic!("Problem creating the file: {error:?}"),
+            },
+            _ => panic!("Problem opening the file: {error:?}"),
+        },
     };
 }

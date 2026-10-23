@@ -34,8 +34,11 @@ fn panicking() {
 
 fn using_result() {
     // `Result<T>` is an enum
-    let greeting_file_result = File::open("hello.txt");
+    let filename = String::from("hello.txt");
+    let greeting_file_result = File::open(&filename);
     // each value represents whether the function succeeded or failed
+    /*
+    // this is too long
     let greeting_file = match greeting_file_result {
         // if the result is `Ok`, the function succeeded, and we can use the value inside
         Ok(file) => file,
@@ -51,4 +54,17 @@ fn using_result() {
             _ => panic!("Problem opening the file: {error:?}"),
         },
     };
+    */
+
+    // there is a `unwrap_or_else` for this
+    let greeting_file = greeting_file_result.unwrap_or_else(|error| {  // this is `closure`
+        match error.kind() {
+            ErrorKind::NotFound => {
+                File::create(&filename).unwrap_or_else(|e| {
+                    panic!("Problem creating the file: {e:?}");
+                })
+            },
+            _ => panic!("Problem opening the file: {error:?}"),
+        }
+    });
 }

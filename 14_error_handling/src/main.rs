@@ -67,4 +67,11 @@ fn using_result() {
             _ => panic!("Problem opening the file: {error:?}"),
         }
     });
+
+    // we can also use `unwrap()` which calls the `panic!` by itself
+    let greeting_file = File::open("hello.txt").unwrap();
+    // or we can use `expect()` to give the message of `panic!`
+    let greeting_file = File::open("hello.txt")
+        .expect("hello.txt should be included in this project");
+
 }

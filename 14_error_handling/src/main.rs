@@ -102,3 +102,9 @@ fn read_username_from_file_hookop() -> Result<String, io::Error> {
     username_file.read_to_string(&mut username)?;
     Ok(username)
 }
+
+fn read_from_file_hook_chain() -> Result<String, io::Error> {
+    let mut username = String::new();
+    File::open("hello.txt")?.read_to_string(&mut username)?;
+    Ok(username)
+}

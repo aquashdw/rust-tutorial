@@ -1,5 +1,5 @@
 use std::fs::File;
-use std::io;
+use std::{fs, io};
 use std::io::{ErrorKind, Read};
 
 fn main() {
@@ -107,4 +107,8 @@ fn read_from_file_hook_chain() -> Result<String, io::Error> {
     let mut username = String::new();
     File::open("hello.txt")?.read_to_string(&mut username)?;
     Ok(username)
+}
+
+fn read_to_string() -> Result<String, io::Error> {
+    fs::read_to_string("hello.txt")
 }

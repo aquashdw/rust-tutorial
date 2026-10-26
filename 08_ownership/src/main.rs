@@ -28,9 +28,9 @@ fn main() {
         // and `=` copies reference not heap data
         let s2 = s1;
         // meaning when this scope ends, `s1` and `s2` is freed.
-        // since they are the same, it results in double free error
+        // since they are the same, it results in double free error...in other languages
 
-        // but rust uses ownership, making `s1` move to `s2`
+        // but rust uses ownership, making `s1` 'move' to `s2`, meaning `s1` is no longer valid
         println!("{s2}");
         // which means following is invalid,
         // println!("{s1}");  // Value used after being moved [E0382]

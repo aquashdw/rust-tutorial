@@ -112,3 +112,7 @@ fn read_from_file_hook_chain() -> Result<String, io::Error> {
 fn read_to_string() -> Result<String, io::Error> {
     fs::read_to_string("hello.txt")
 }
+
+fn hook_option(text: &str) -> Option<char> {
+    text.lines().next()?.chars().last()
+}

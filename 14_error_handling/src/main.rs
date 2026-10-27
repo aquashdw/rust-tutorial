@@ -1,10 +1,15 @@
 use std::fs::File;
 use std::{fs, io};
+use std::error::Error;
 use std::io::{ErrorKind, Read};
 
-fn main() {
+fn main() -> Result<(), Box<dyn Error>> {
     // panicking();
     using_result();
+
+    let greeting_file = File::open("hello.txt");
+
+    Ok(())
 }
 
 
